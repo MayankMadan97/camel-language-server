@@ -40,7 +40,7 @@ jobs:
             ./gradlew build
           fi
       - name: Download DesigniteJava
-        run: wget "https://www.designite-tools.com/static/download/DJE/DesigniteJava.jar"
+        run: wget "https://www.designite-tools.com/assets/DesigniteJavaCommunity.jar"
       - name: Analyze project with DesigniteJava
         run: |
           java -jar DesigniteJava.jar -ci -repo $GITHUB_REPOSITORY -pat ${{ secrets.PAT }}
