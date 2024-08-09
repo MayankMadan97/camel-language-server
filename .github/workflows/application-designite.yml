@@ -39,6 +39,13 @@ jobs:
           if [[ "${{ steps.set-build-system.outputs.build-system }}" == "gradle" ]]; then
             ./gradlew build
           fi
+          
+      - name: Build with Maven
+        run: |
+          if [[ "${{ steps.set-build-system.outputs.build-system }}" == "maven" ]]; then
+            mvn clean install
+          fi
+          
       - name: Download DesigniteJava
         run: wget "https://www.designite-tools.com/assets/DesigniteJava.jar"
 
@@ -46,6 +53,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '17'
+          distribution: 'adopt-openjdk'
         
       - name: Verify Java version
         run: java -version
