@@ -40,10 +40,10 @@ jobs:
             ./gradlew build
           fi
       - name: Download DesigniteJava
-        run: wget "https://www.designite-tools.com/assets/DesigniteJavaCommunity.jar"
+        run: wget "https://www.designite-tools.com/assets/DesigniteJava.jar"
       - name: Analyze project with DesigniteJava
         run: |
-          java -jar DesigniteJavaCommunity.jar -o Designite_output -ci -repo $GITHUB_REPOSITORY -pat ${{ secrets.PAT }} -k ${{ secrets.D_KEY }}
+          java -jar DesigniteJava.jar -o Designite_output -ci -repo $GITHUB_REPOSITORY -pat ${{ secrets.PAT }} -k ${{ secrets.D_KEY }}
           ls
       - name: Upload Designite results as artifact
         uses: actions/upload-artifact@v2
