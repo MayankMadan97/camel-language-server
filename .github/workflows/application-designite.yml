@@ -25,19 +25,15 @@ jobs:
       - name: Extract Java version from pom.xml
         id: extract-java-version
         run: |
-          java_version=$(xmllint --xpath "string(//plugin[artifactId='maven-compiler-plugin']/configuration/source)" pom.xml)
-          echo "JAVA_VERSION=${java_version}" >> $GITHUB_ENV
-      
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: 'adoptopenjdk' # or your preferred JDK distribution
+          # Try to extract Java version from pom.xml
+          java_version=$(grep -oP '(?<=<source>)[^<]+' pom.xml | head -n 1)
+        
+          # Default to Java 17 if version is not found
+          if [ -z "$java_version" ]; then
+            java_version="17"
+          fi
 
-      - name: Build with Maven
-        run: |
-          if [[ "${{ steps.set-build-system.outputs.build-system }}" == "maven" ]]; then
-            mvn clean install
+          echo "JAVA_VERSION=${java_version}" >> $GITHUB_ENV
           fi
       - name: Build with Gradle
         run: |
