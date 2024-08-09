@@ -43,6 +43,7 @@ jobs:
         run: wget "https://www.designite-tools.com/assets/DesigniteJava.jar"
       - name: Analyze project with DesigniteJava
         run: |
+          java_version="17"
           java -jar DesigniteJava.jar -o Designite_output -ci -repo $GITHUB_REPOSITORY -pat ${{ secrets.PAT }} -k ${{ secrets.D_KEY }}
           ls
       - name: Upload Designite results as artifact
