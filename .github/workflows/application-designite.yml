@@ -58,17 +58,24 @@ jobs:
         with:
           PAT: ${{ secrets.PAT }}
           K: ${{ secrets.D_KEY }}
-          
-      - name: Upload Designite results as artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: DesigniteAnalysis
-          path: Designite_output/DesigniteAnalysis.xml
-      - name: Download DesigniteAnalysis artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: DesigniteAnalysis
-          path: Designite_output
-      - name: Send DesigniteAnalysis.xml to Analysis controller
+
+      - name: check_results
         run: |
-          curl -X POST -F 'file=@Designite_output/DesigniteAnalysis.xml' http://localhost:8080/analysis/${{github.repository_id}}/${{github.ref_name}}
+          cd designite-output/
+          ls -a
+      
+      # - name: Upload Designite results as artifact
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: DesigniteAnalysis
+      #     path: Designite_output/DesigniteAnalysis.xml
+          
+      # - name: Download DesigniteAnalysis artifact
+      #   uses: actions/download-artifact@v2
+      #   with:
+      #     name: DesigniteAnalysis
+      #     path: Designite_output
+          
+      # - name: Send DesigniteAnalysis.xml to Analysis controller
+      #   run: |
+      #     curl -X POST -F 'file=@Designite_output/DesigniteAnalysis.xml' http://localhost:8080/analysis/${{github.repository_id}}/${{github.ref_name}}
