@@ -54,7 +54,7 @@ jobs:
             wget "https://www.designite-tools.com/assets/DesigniteJava.jar"
             mkdir -p codergatelibs  # Create the directory if it does not exist
             mv DesigniteJava.jar codergatelibs/
-            git add libs/DesigniteJava.jar
+            git add codergatelibs/DesigniteJava.jar
             git commit -m "Add DesigniteJava.jar to repository"
             git push origin main
           fi
