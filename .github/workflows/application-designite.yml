@@ -54,11 +54,11 @@ jobs:
             echo "DesigniteJava already present"
           else
             wget "https://www.designite-tools.com/assets/DesigniteJava.jar"
-            mv "DesigniteJava.jar" "$GITHUB_REPOSITORY/.github/"
+            mv "DesigniteJava.jar" ".github/"
           fi
       - name: Analyze project with DesigniteJava
         run: |
-          java -jar $GITHUB_REPOSITORY/.github/DesigniteJava.jar -o Designite_output -ci -repo $GITHUB_REPOSITORY -pat ${{ secrets.PAT }} -k ${{ secrets.D_KEY }}
+          java -jar .github/DesigniteJava.jar -o Designite_output -ci -repo $GITHUB_REPOSITORY -pat ${{ secrets.PAT }} -k ${{ secrets.D_KEY }}
           ls
       - name: Upload Designite results as artifact
         uses: actions/upload-artifact@v2
