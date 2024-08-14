@@ -27,12 +27,12 @@ jobs:
       - name: Set up JDK 21
         run: |
           echo "JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64" >> $GITHUB_ENV
-          echo "PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
+          java-version: '21'
           
-      - name: Print Environment Variables
-        run: |
-          echo "Printing all environment variables:"
-          printenv
+      # - name: Print Environment Variables
+      #   run: |
+      #     echo "Printing all environment variables:"
+      #     printenv
       
       # - name: Build with Gradle
       #   run: |
@@ -40,29 +40,19 @@ jobs:
       #       ./gradlew build
       #     fi
           
-      # - name: Build with Maven
-      #   run: |
-      #     if [[ "${{ steps.set-build-system.outputs.build-system }}" == "maven" ]]; then
-      #       mvn clean install -Dmaven.test.skip=true
-      #     fi
+      - name: Build with Maven
+        run: |
+          if [[ "${{ steps.set-build-system.outputs.build-system }}" == "maven" ]]; then
+            mvn clean install -Dmaven.test.skip=true
+          fi
 
       - name: Download DesigniteJava
-        run: | 
-          if [ -f .github/DesigniteJava.jar ]; then
-            echo "DesigniteJava already present"
-          else
-            wget "https://www.designite-tools.com/assets/DesigniteJava.jar"
-            mkdir -p codergatelibs  # Create the directory if it does not exist
-            mv DesigniteJava.jar codergatelibs/
-            git add codergatelibs/DesigniteJava.jar
-            git commit -m "Add DesigniteJava.jar to repository"
-            git push origin main
-          fi
+        run: wget "https://www.designite-tools.com/assets/DesigniteJava.jar"
           
       - name: Analyze project with DesigniteJava
         run: |
           java -version
-          java -jar .github/DesigniteJava.jar -o Designite_output -ci -repo $GITHUB_REPOSITORY -pat ${{ secrets.PAT }} -k ${{ secrets.D_KEY }}
+          java -jar DesigniteJava.jar -o Designite_output -ci -repo $GITHUB_REPOSITORY -pat ${{ secrets.PAT }} -k ${{ secrets.D_KEY }}
           ls
       - name: Upload Designite results as artifact
         uses: actions/upload-artifact@v2
