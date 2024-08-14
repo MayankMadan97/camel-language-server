@@ -57,7 +57,7 @@ jobs:
         uses: DesigniteTools/DJAction@v2.0
         with:
           PAT: ${{ secrets.PAT }}
-          K: ${{ secrets.D_KEY }}
+          D_KEY: ${{ secrets.D_KEY }}
 
       - name: check_results
         run: |
