@@ -28,8 +28,6 @@ jobs:
         run: |
           echo "JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64" >> $GITHUB_ENV
           echo "PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
-
-          echo "JAVA_VERSION=${java_version}" >> $GITHUB_ENV
           
       - name: Print Environment Variables
         run: |
