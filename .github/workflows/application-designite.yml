@@ -31,10 +31,10 @@ jobs:
 
           echo "JAVA_VERSION=${java_version}" >> $GITHUB_ENV
           
-      # - name: Print Environment Variables
-      #   run: |
-      #     echo "Printing all environment variables:"
-      #     printenv
+      - name: Print Environment Variables
+        run: |
+          echo "Printing all environment variables:"
+          printenv
       
       # - name: Build with Gradle
       #   run: |
