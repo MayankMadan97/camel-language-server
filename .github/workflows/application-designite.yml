@@ -58,6 +58,7 @@ jobs:
           fi
       - name: Analyze project with DesigniteJava
         run: |
+          java -version
           java -jar .github/DesigniteJava.jar -o Designite_output -ci -repo $GITHUB_REPOSITORY -pat ${{ secrets.PAT }} -k ${{ secrets.D_KEY }}
           ls
       - name: Upload Designite results as artifact
