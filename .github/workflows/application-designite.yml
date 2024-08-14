@@ -34,6 +34,10 @@ jobs:
           fi
 
           echo "JAVA_VERSION=${java_version}" >> $GITHUB_ENV
+      - name: Print Environment Variables
+        run: |
+          echo "Printing all environment variables:"
+          printenv
       - name: Build with Gradle
         run: |
           if [[ "${{ steps.set-build-system.outputs.build-system }}" == "gradle" ]]; then
