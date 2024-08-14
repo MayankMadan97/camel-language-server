@@ -54,7 +54,7 @@ jobs:
       #     cd ..
 
       - name: DesigniteJava_action
-        uses: DesigniteTools/DJAction@v1.0.0
+        uses: DesigniteTools/DJAction@v2.0
         with:
           PAT: ${{ secrets.PAT }}
           K: ${{ secrets.D_KEY }}
