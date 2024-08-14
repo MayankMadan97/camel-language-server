@@ -22,16 +22,10 @@ jobs:
             echo "Build system not found"
             exit 1
           fi
-      - name: Extract Java version from pom.xml
-        id: extract-java-version
+      - name: Set up JDK 21
         run: |
-          # Try to extract Java version from pom.xml
-          java_version=$(grep -oP '(?<=<source>)[^<]+' pom.xml | head -n 1)
-        
-          # Default to Java 17 if version is not found
-          if [ -z "$java_version" ]; then
-            java_version="17"
-          fi
+          echo "JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64" >> $GITHUB_ENV
+          echo "PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
 
           echo "JAVA_VERSION=${java_version}" >> $GITHUB_ENV
       - name: Print Environment Variables
