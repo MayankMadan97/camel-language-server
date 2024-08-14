@@ -23,11 +23,15 @@ jobs:
             echo "Build system not found"
             exit 1
           fi
-          
+
       - name: Set up JDK 21
-        run: |
-          echo "JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64" >> $GITHUB_ENV
+        uses: actions/setup-java@v3
+        with:
           java-version: '21'
+      
+      # - name: Set up JDK 21
+      #   run: |
+      #     echo "JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64" >> $GITHUB_ENV
           
       # - name: Print Environment Variables
       #   run: |
