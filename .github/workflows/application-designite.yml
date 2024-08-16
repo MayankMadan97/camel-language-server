@@ -48,7 +48,7 @@ jobs:
       - name: Analyze project with DesigniteJava
         run: |
           java -version
-          java -jar DesigniteJava.jar -o Designite_output -ci -repo $GITHUB_REPOSITORY -pat ${{ secrets.PAT }} -k ${{ secrets.D_KEY }} -f xml
+          java -jar DesigniteJava.jar -o Designite_output -ci -repo $GITHUB_REPOSITORY -pat ${{ secrets.PAT }} -k ${{ secrets.D_KEY }} -F "file=@analysis/DesigniteAnalysis.xml"
           cd Designite_output
           ls -a
           cd ..
