@@ -78,4 +78,4 @@ jobs:
           
       - name: Send DesigniteAnalysis.xml to Analysis controller
         run: |
-          curl -X POST -F 'file=@Designite_output/DesigniteAnalysis.xml' https://smee.io/9SksXcUc7NSEVX6/analysis/${{github.repository_id}}/${{github.ref_name}}
+          curl -X POST -F 'file=@Designite_output/DesigniteAnalysis.xml' https://b936-134-190-130-169.ngrok-free.app/analysis/${{github.repository_id}}/${{github.ref_name}}
